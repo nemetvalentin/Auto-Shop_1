@@ -1,0 +1,83 @@
+@model List<WebShop.MVC.ViewModels.OrderViewModel>
+@{
+    ViewData["Title"] = "Sve porudžbine";
+}
+
+<h2 class="mb-4"><i class="bi bi-list-columns-reverse"></i> Sve porudžbine</h2>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show">
+        @TempData["Success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<div class="card shadow-sm">
+    <div class="card-body p-0">
+        <table class="table table-hover mb-0" id="ordersTable">
+            <thead class="table-light">
+                <tr>
+                    <th>#</th>
+                    <th>Korisnik</th>
+                    <th>Datum</th>
+                    <th>Status</th>
+                    <th>Art.</th>
+                    <th class="text-end">Ukupno</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model)
+                {
+                    <tr>
+                        <td class="fw-bold">@order.Id</td>
+                        <td>@order.Username</td>
+                        <td>@order.CreatedAt.ToString("dd.MM.yyyy HH:mm")</td>
+                        <td>
+                            @{
+                                var badgeClass = order.Status switch
+                                {
+                                    "Pending" => "bg-warning text-dark",
+                                    "Processing" => "bg-info text-dark",
+                                    "Shipped" => "bg-primary",
+                                    "Delivered" => "bg-success",
+                                    "Cancelled" => "bg-danger",
+                                    _ => "bg-secondary"
+                                };
+                                var statusLabel = order.Status switch
+                                {
+                                    "Pending" => "Na čekanju",
+                                    "Processing" => "U obradi",
+                                    "Shipped" => "Poslato",
+                                    "Delivered" => "Dostavljeno",
+                                    "Cancelled" => "Otkazano",
+                                    _ => order.Status
+                                };
+                            }
+                            <span class="badge @badgeClass">@statusLabel</span>
+                        </td>
+                        <td>@order.Items.Count</td>
+                        <td class="text-end fw-bold text-primary">@order.TotalAmount.ToString("N2") €</td>
+                        <td>
+                            <a asp-action="Details" asp-controller="Order" asp-route-id="@order.Id" class="btn btn-outline-primary btn-sm">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            $('#ordersTable').DataTable({
+                order: [[2, 'desc']],
+                language: { url: 'https://cdn.datatables.net/plug-ins/1.13.6/i18n/sr-SP.json' }
+            });
+        });
+    </script>
+}

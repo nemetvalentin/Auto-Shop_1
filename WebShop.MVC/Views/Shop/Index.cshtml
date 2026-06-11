@@ -1,0 +1,153 @@
+@model WebShop.MVC.ViewModels.ShopViewModel
+@{
+    ViewData["Title"] = "Prodavnica automobila";
+}
+
+<div class="row mb-4">
+    <div class="col-12">
+        <h1 class="display-5 fw-bold text-primary">
+            <i class="bi bi-car-front-fill"></i> AutoShop
+        </h1>
+        <p class="text-muted">Vaš pouzdani partner u prodaji automobila</p>
+    </div>
+</div>
+
+<form method="get" asp-action="Index" asp-controller="Shop">
+    <div class="row g-3 mb-4 p-3 bg-light rounded shadow-sm">
+        <div class="col-md-3">
+            <label class="form-label fw-semibold">Pretraga</label>
+            <input type="text" name="search" value="@Model.Search" class="form-control" placeholder="Naziv, opis, kod..." />
+        </div>
+        <div class="col-md-2">
+            <label class="form-label fw-semibold">Kategorija</label>
+            <select name="categoryId" class="form-select">
+                <option value="">Sve kategorije</option>
+                @foreach (var cat in Model.Categories)
+                {
+                    <option value="@cat.Value" selected="@(cat.Selected)">@cat.Text</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-2">
+            <label class="form-label fw-semibold">Min. cena (€)</label>
+            <input type="number" name="minPrice" value="@Model.MinPrice" class="form-control" placeholder="0" min="0" />
+        </div>
+        <div class="col-md-2">
+            <label class="form-label fw-semibold">Max. cena (€)</label>
+            <input type="number" name="maxPrice" value="@Model.MaxPrice" class="form-control" placeholder="99999" min="0" />
+        </div>
+        <div class="col-md-2">
+            <label class="form-label fw-semibold">Marka automobila</label>
+            <select name="manufacturer" class="form-select">
+                <option value="">Svi proizvođači</option>
+                @foreach (var m in Model.Manufacturers)
+                {
+                    <option value="@m" selected="@(m == Model.Manufacturer ? "selected" : null)">@m</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-1 d-flex align-items-end gap-1">
+            <div>
+                <label class="form-label fw-semibold">Na stanju</label>
+                <select name="inStock" class="form-select">
+                    <option value="">Sve</option>
+                    <option value="true" selected="@(Model.InStock == true ? "selected" : null)">Na stanju</option>
+                    <option value="false" selected="@(Model.InStock == false ? "selected" : null)">Nije na stanju</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-1 d-flex align-items-end gap-1">
+            <button type="submit" class="btn btn-primary w-100">
+                <i class="bi bi-search"></i>
+            </button>
+            <a asp-action="Index" asp-controller="Shop" class="btn btn-outline-secondary w-100">
+                <i class="bi bi-x"></i>
+            </a>
+        </div>
+    </div>
+</form>
+
+@if (!Model.Products.Any())
+{
+    <div class="alert alert-info">
+        <i class="bi bi-info-circle"></i> Nisu pronađeni proizvodi koji odgovaraju filterima.
+    </div>
+}
+else
+{
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <span class="text-muted">Pronađeno <strong>@Model.Products.Count</strong> proizvoda</span>
+    </div>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+        @foreach (var product in Model.Products)
+        {
+            <div class="col">
+                <div class="card h-100 shadow-sm product-card">
+                    @if (!string.IsNullOrEmpty(product.ImagePath))
+                    {
+                        <img src="@product.ImagePath" class="card-img-top product-img" alt="@product.Name" />
+                    }
+                    else
+                    {
+                        <div class="card-img-top product-img-placeholder d-flex align-items-center justify-content-center bg-light text-secondary">
+                            <i class="bi bi-car-front" style="font-size: 3rem;"></i>
+                        </div>
+                    }
+                    <div class="card-body d-flex flex-column">
+                        <div class="d-flex justify-content-between mb-1">
+                            <span class="badge bg-secondary" style="width:fit-content">@(product.Category?.Name ?? "N/A")</span>
+                            @if (product.InStock)
+                            {
+                                <span class="badge bg-success">Na stanju</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">Nema</span>
+                            }
+                        </div>
+                        <h6 class="card-title fw-bold">@product.Name</h6>
+                        <p class="card-text text-muted small flex-grow-1">@(product.Description?.Length > 80 ? product.Description.Substring(0, 80) + "..." : product.Description)</p>
+                        <div class="mt-auto">
+                            <div class="fw-bold text-primary fs-5 mb-2">@product.Price.ToString("N2") €</div>
+                            <div class="d-flex gap-2">
+                                <a asp-action="Details" asp-controller="Shop" asp-route-id="@product.Id" class="btn btn-outline-primary btn-sm flex-grow-1">
+                                    <i class="bi bi-eye"></i> Detalji
+                                </a>
+                                @if (User.Identity?.IsAuthenticated == true && product.InStock)
+                                {
+                                    <form asp-action="Add" asp-controller="Cart" method="post">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="productId" value="@product.Id" />
+                                        <input type="hidden" name="quantity" value="1" />
+                                        <button type="submit" class="btn btn-success btn-sm">
+                                            <i class="bi bi-cart-plus"></i>
+                                        </button>
+                                    </form>
+                                }
+                                else if (!product.InStock)
+                                {
+                                    <button class="btn btn-secondary btn-sm" disabled><i class="bi bi-x-circle"></i></button>
+                                }
+                                else
+                                {
+                                    <a asp-action="Login" asp-controller="Account" class="btn btn-success btn-sm" title="Prijavite se za kupovinu">
+                                        <i class="bi bi-cart-plus"></i>
+                                    </a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+@section Scripts {
+    <style>
+        .product-card { transition: transform 0.2s, box-shadow 0.2s; }
+        .product-card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.12) !important; }
+        .product-img { height: 180px; object-fit: contain; padding: 10px; }
+        .product-img-placeholder { height: 180px; }
+    </style>
+}
