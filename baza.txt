@@ -1,0 +1,20 @@
+Otvoriti terminal i tamo copy-paste:
+
+
+---
+dotnet ef migrations add AddInStockToProduct --project WebShop.DAL --startup-project WebShop.MVC
+---
+
+---
+dotnet ef database update --project WebShop.DAL --startup-project WebShop.MVC
+---
+
+---
+# Obrisanje snapshot fajl, zadrži migration fajlove
+del "WebShop.DAL\Migrations\WebShopDbContextModelSnapshot.cs"
+
+# Zatim ponovo dodavanje snapshot kroz novu praznu migraciju
+dotnet ef migrations add FixSnapshot --project WebShop.DAL --startup-project WebShop.MVC
+
+dotnet ef database update --project WebShop.DAL --startup-project WebShop.MVC
+---
