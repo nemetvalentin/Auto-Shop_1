@@ -1,0 +1,5 @@
+Prvo treba da napravimo bazu u SQL Management Studio AutoShopDb
+Posle otvaramo baza.txt fajl i otvorimo Visual Studio sa WebShop.sln
+Otvorimo terminal: View - Terminal
+Copy - Paste baza.txt folder red po red
+Pokrenemo ceo program
