@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "dgSpecHash": "1GXN+F81cJc=",
+  "success": false,
+  "projectFilePath": "C:\\Users\\AMD_PC\\Downloads\\WebShop\\WebShop.MVC\\WebShop.MVC.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1301",
+      "level": "Error",
+      "message": "The local source 'D:\\Programs\\visualstudio22\\New folder (3)\\NuGetPackages' doesn't exist.",
+      "projectPath": "C:\\Users\\AMD_PC\\Downloads\\WebShop\\WebShop.MVC\\WebShop.MVC.csproj",
+      "filePath": "C:\\Users\\AMD_PC\\Downloads\\WebShop\\WebShop.MVC\\WebShop.MVC.csproj",
+      "libraryId": "Microsoft.VisualStudio.Web.CodeGeneration.Design",
+      "targetGraphs": []
+    },
+    {
+      "code": "NU1301",
+      "level": "Error",
+      "message": "The local source 'D:\\Programs\\visualstudio22\\New folder (3)\\NuGetPackages' doesn't exist.",
+      "projectPath": "C:\\Users\\AMD_PC\\Downloads\\WebShop\\WebShop.MVC\\WebShop.MVC.csproj",
+      "filePath": "C:\\Users\\AMD_PC\\Downloads\\WebShop\\WebShop.MVC\\WebShop.MVC.csproj",
+      "libraryId": "Microsoft.EntityFrameworkCore.Tools",
+      "targetGraphs": []
+    }
+  ]
+}
