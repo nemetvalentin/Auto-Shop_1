@@ -1,0 +1,45 @@
+{
+  "version": 2,
+  "dgSpecHash": "2MSAQKEePQE=",
+  "success": false,
+  "projectFilePath": "C:\\Users\\AMD_PC\\Downloads\\WebShop\\WebShop.DAL\\WebShop.DAL.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1301",
+      "level": "Error",
+      "message": "The local source 'D:\\Programs\\visualstudio22\\New folder (3)\\NuGetPackages' doesn't exist.",
+      "projectPath": "C:\\Users\\AMD_PC\\Downloads\\WebShop\\WebShop.DAL\\WebShop.DAL.csproj",
+      "filePath": "C:\\Users\\AMD_PC\\Downloads\\WebShop\\WebShop.DAL\\WebShop.DAL.csproj",
+      "libraryId": "Microsoft.EntityFrameworkCore",
+      "targetGraphs": []
+    },
+    {
+      "code": "NU1301",
+      "level": "Error",
+      "message": "The local source 'D:\\Programs\\visualstudio22\\New folder (3)\\NuGetPackages' doesn't exist.",
+      "projectPath": "C:\\Users\\AMD_PC\\Downloads\\WebShop\\WebShop.DAL\\WebShop.DAL.csproj",
+      "filePath": "C:\\Users\\AMD_PC\\Downloads\\WebShop\\WebShop.DAL\\WebShop.DAL.csproj",
+      "libraryId": "Microsoft.EntityFrameworkCore.SqlServer",
+      "targetGraphs": []
+    },
+    {
+      "code": "NU1301",
+      "level": "Error",
+      "message": "The local source 'D:\\Programs\\visualstudio22\\New folder (3)\\NuGetPackages' doesn't exist.",
+      "projectPath": "C:\\Users\\AMD_PC\\Downloads\\WebShop\\WebShop.DAL\\WebShop.DAL.csproj",
+      "filePath": "C:\\Users\\AMD_PC\\Downloads\\WebShop\\WebShop.DAL\\WebShop.DAL.csproj",
+      "libraryId": "Microsoft.EntityFrameworkCore.Tools",
+      "targetGraphs": []
+    },
+    {
+      "code": "NU1301",
+      "level": "Error",
+      "message": "The local source 'D:\\Programs\\visualstudio22\\New folder (3)\\NuGetPackages' doesn't exist.",
+      "projectPath": "C:\\Users\\AMD_PC\\Downloads\\WebShop\\WebShop.DAL\\WebShop.DAL.csproj",
+      "filePath": "C:\\Users\\AMD_PC\\Downloads\\WebShop\\WebShop.DAL\\WebShop.DAL.csproj",
+      "libraryId": "Microsoft.EntityFrameworkCore.Design",
+      "targetGraphs": []
+    }
+  ]
+}
