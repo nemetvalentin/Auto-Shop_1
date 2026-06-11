@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "dgSpecHash": "LliyxMOMeow=",
+  "success": false,
+  "projectFilePath": "C:\\Users\\AMD_PC\\Downloads\\WebShop\\WebShop.BLL\\WebShop.BLL.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1301",
+      "level": "Error",
+      "message": "The local source 'D:\\Programs\\visualstudio22\\New folder (3)\\NuGetPackages' doesn't exist.",
+      "projectPath": "C:\\Users\\AMD_PC\\Downloads\\WebShop\\WebShop.BLL\\WebShop.BLL.csproj",
+      "filePath": "C:\\Users\\AMD_PC\\Downloads\\WebShop\\WebShop.BLL\\WebShop.BLL.csproj",
+      "libraryId": "Microsoft.EntityFrameworkCore",
+      "targetGraphs": []
+    },
+    {
+      "code": "NU1301",
+      "level": "Error",
+      "message": "The local source 'D:\\Programs\\visualstudio22\\New folder (3)\\NuGetPackages' doesn't exist.",
+      "projectPath": "C:\\Users\\AMD_PC\\Downloads\\WebShop\\WebShop.BLL\\WebShop.BLL.csproj",
+      "filePath": "C:\\Users\\AMD_PC\\Downloads\\WebShop\\WebShop.BLL\\WebShop.BLL.csproj",
+      "libraryId": "Microsoft.EntityFrameworkCore.SqlServer",
+      "targetGraphs": []
+    }
+  ]
+}
